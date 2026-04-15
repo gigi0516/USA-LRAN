@@ -1,0 +1,29 @@
+import numpy as np
+
+data["period"] = np.where(data.index < "2023-10-01", "Before", "After")
+
+avg = data.groupby("period").mean()
+
+avg.plot(kind="bar")
+plt.title("Before vs After War")
+plt.show()
+
+
+plt.figure()
+
+plt.plot(data["SP500"], label="SP500")
+plt.plot(data["Oil"], label="Oil")
+
+plt.legend()
+plt.title("Trend Comparison Over Time")
+plt.show()
+
+plt.figure()
+
+plt.scatter(data["Oil"], data["SP500"])
+
+plt.xlabel("Oil Price")
+plt.ylabel("SP500")
+plt.title("Oil vs SP500 Relationship")
+
+plt.show()
