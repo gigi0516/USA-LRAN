@@ -1,0 +1,6 @@
+data['Volatility'] = data['SP500'].pct_change().rolling(10).std()
+
+plt.figure()
+plt.plot(data['Volatility'])
+plt.title("Market Volatility")
+plt.show()
