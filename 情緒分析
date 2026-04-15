@@ -1,0 +1,27 @@
+!pip install newsapi-python textblob
+from newsapi import NewsApiClient
+from textblob import TextBlob
+import pandas as pd
+
+# 你的 API key（要去 newsapi.org 申請）
+newsapi = NewsApiClient(api_key='272969c4e4f740ef9ed42f79f62f9f8e')
+
+# 抓戰爭相關新聞
+all_articles = newsapi.get_everything(
+    q='Iran Israel war',
+    language='en',
+    sort_by='publishedAt'
+)
+
+data = []
+
+for article in all_articles['articles']:
+    title = article['title']
+    sentiment = TextBlob(title).sentiment.polarity  # 情緒分數
+
+    data.append([title, sentiment])
+
+df = pd.DataFrame(data, columns=['title', 'sentiment'])
+
+print(df.head())
+print("平均情緒：", df['sentiment'].mean())
