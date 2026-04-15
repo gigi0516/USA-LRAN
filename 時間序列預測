@@ -1,0 +1,20 @@
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 下載資料
+sp500 = yf.download("^GSPC", start="2020-01-01")
+oil = yf.download("CL=F", start="2020-01-01")
+
+# 畫圖
+plt.figure()
+plt.plot(sp500['Close'], label='S&P500')
+plt.legend()
+plt.title("S&P500 Time Series")
+plt.show()
+
+plt.figure()
+plt.plot(oil['Close'], label='Oil Price')
+plt.legend()
+plt.title("Oil Price Time Series")
+plt.show()
