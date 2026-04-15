@@ -1,0 +1,9 @@
+from sklearn.linear_model import LinearRegression
+
+X = data[['Oil']]
+y = data['SP500']
+
+model = LinearRegression()
+model.fit(X, y)
+
+print("係數:", model.coef_)
