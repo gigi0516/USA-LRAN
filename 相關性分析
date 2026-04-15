@@ -1,0 +1,24 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# 合併資料
+data = pd.DataFrame({
+    'SP500': sp500[('Close', '^GSPC')], # Corrected access for S&P500 Close prices
+    'Oil': oil[('Close', 'CL=F')]      # Corrected access for Oil Close prices
+}).dropna()
+
+# 相關矩陣
+corr = data.corr()
+
+sns.heatmap(corr, annot=True)
+plt.title("Correlation Matrix")
+plt.show()
+
+# 散點圖
+plt.figure()
+plt.scatter(data['Oil'], data['SP500'])
+plt.xlabel("Oil Price")
+plt.ylabel("SP500")
+plt.title("Oil vs SP500")
+plt.show()
