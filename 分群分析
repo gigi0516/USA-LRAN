@@ -1,0 +1,9 @@
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(n_clusters=3)
+data['Cluster'] = kmeans.fit_predict(data)
+
+plt.figure()
+plt.scatter(data['Oil'], data['SP500'], c=data['Cluster'])
+plt.title("Clustering Result")
+plt.show()
